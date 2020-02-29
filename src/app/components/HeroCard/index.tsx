@@ -7,6 +7,7 @@ import {
   Paragraph,
   HeadingThree
 } from "../../components/Typography";
+import { ProgressBar } from "./progressBar";
 
 const CardFlip = styled.section`
   width: 400px;
@@ -61,6 +62,13 @@ const Img = styled.img`
   height: auto;
 `;
 
+const SkillContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`;
+
 interface IHeroCardProps {
   name: string;
   imgUrl: string;
@@ -84,6 +92,11 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
   imgUrl,
   description,
   healthpoints,
+  strength,
+  intelligence,
+  stamina,
+  agility,
+  speed,
   backStory
 }) => {
   return (
@@ -98,6 +111,37 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
       </CardFront>
       <CardBack>
         <Paragraph>This is the back!</Paragraph>
+        <Paragraph style={{ margin: 0 }}>
+          Skills
+          <div
+            style={{
+              marginLeft: "10%",
+              borderBottom: "1px solid black",
+              width: "80%"
+            }}
+          ></div>
+        </Paragraph>
+        <div>
+          <SkillContainer>
+            <ProgressBar
+              skillName={"strength"}
+              skillValue={strength}
+            ></ProgressBar>
+            <ProgressBar
+              skillName={"intelligence"}
+              skillValue={intelligence}
+            ></ProgressBar>
+            <ProgressBar
+              skillName={"stamina"}
+              skillValue={stamina}
+            ></ProgressBar>
+            <ProgressBar
+              skillName={"agility"}
+              skillValue={agility}
+            ></ProgressBar>
+            <ProgressBar skillName={"speed"} skillValue={speed}></ProgressBar>
+          </SkillContainer>
+        </div>
       </CardBack>
     </CardFlip>
   );
