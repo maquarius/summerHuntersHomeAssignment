@@ -66,7 +66,7 @@ const HeroCardContainer = styled.div`
   flex-wrap: wrap;
   align-self: center;
   background-image: url(../../../../public/bg_mesh.png);
-  justify-content: center;
+  justify-content: space-around;
   max-width: 1150px;
   @media (min-width: 1400px) {
     margin-left: auto;
