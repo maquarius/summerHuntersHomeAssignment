@@ -8,6 +8,9 @@ import {
   HeadingThree
 } from "../../components/Typography";
 import { ProgressBar } from "./progressBar";
+import { Skill } from "./skill";
+import { TElement } from "../../../server/types/element";
+import { ISkills } from "../../views/HeroIndex/index";
 
 const CardFlip = styled.section`
   width: 400px;
@@ -62,28 +65,38 @@ const Img = styled.img`
   height: auto;
 `;
 
-const SkillContainer = styled.div`
+const AttributesContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
 `;
 
+const SkillsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`;
 interface IHeroCardProps {
   name: string;
   imgUrl: string;
   description: string;
   backStory: string;
-  strength: number;
-  intelligence: number;
-  stamina: number;
-  healthpoints: number;
-  mana: number;
-  agility: number;
-  speed: number;
+  attributes: {
+    strength: number;
+    intelligence: number;
+    stamina: number;
+    agility: number;
+    speed: number;
+  };
+  lifepower: {
+    healthpoints: number;
+    mana: number;
+  };
   resistance: TElement;
   weakness: TElement;
-  skills: ISkills;
+  skills: ISkills[];
   // extend this
 }
 
@@ -91,13 +104,10 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
   name,
   imgUrl,
   description,
-  healthpoints,
-  strength,
-  intelligence,
-  stamina,
-  agility,
-  speed,
-  backStory
+  backStory,
+  attributes: { stamina, strength, intelligence, speed, agility },
+  lifepower: { healthpoints, mana },
+  skills
 }) => {
   return (
     <CardFlip>
@@ -110,7 +120,38 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
         <Paragraph>{description}</Paragraph>
       </CardFront>
       <CardBack>
-        <Paragraph>This is the back!</Paragraph>
+        <Paragraph style={{ margin: 0 }}>
+          Attributes
+          <div
+            style={{
+              marginLeft: "10%",
+              borderBottom: "1px solid black",
+              width: "80%"
+            }}
+          ></div>
+        </Paragraph>
+        <AttributesContainer>
+          <ProgressBar
+            attributeName={"strength"}
+            attributeValue={strength}
+          ></ProgressBar>
+          <ProgressBar
+            attributeName={"intelligence"}
+            attributeValue={intelligence}
+          ></ProgressBar>
+          <ProgressBar
+            attributeName={"stamina"}
+            attributeValue={stamina}
+          ></ProgressBar>
+          <ProgressBar
+            attributeName={"agility"}
+            attributeValue={agility}
+          ></ProgressBar>
+          <ProgressBar
+            attributeName={"speed"}
+            attributeValue={speed}
+          ></ProgressBar>
+        </AttributesContainer>
         <Paragraph style={{ margin: 0 }}>
           Skills
           <div
@@ -121,27 +162,7 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
             }}
           ></div>
         </Paragraph>
-        <div>
-          <SkillContainer>
-            <ProgressBar
-              skillName={"strength"}
-              skillValue={strength}
-            ></ProgressBar>
-            <ProgressBar
-              skillName={"intelligence"}
-              skillValue={intelligence}
-            ></ProgressBar>
-            <ProgressBar
-              skillName={"stamina"}
-              skillValue={stamina}
-            ></ProgressBar>
-            <ProgressBar
-              skillName={"agility"}
-              skillValue={agility}
-            ></ProgressBar>
-            <ProgressBar skillName={"speed"} skillValue={speed}></ProgressBar>
-          </SkillContainer>
-        </div>
+        <SkillsContainer>{/*<Skill skills={skills}></Skill>*/}</SkillsContainer>
       </CardBack>
     </CardFlip>
   );

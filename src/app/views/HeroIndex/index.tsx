@@ -17,13 +17,18 @@ const HEROES_QUERY = gql`
       imgUrl
       description
       backStory
-      strength
-      intelligence
-      stamina
-      healthpoints
-      mana
-      agility
-      speed
+      attributes {
+        strength
+        intelligence
+        stamina
+        agility
+        speed
+      }
+      lifepower {
+        healthpoints
+        mana
+      }
+
       resistance
       weakness
       skills {
@@ -42,23 +47,43 @@ interface IHero {
   imgUrl: string;
   description: string;
   backStory: string;
-  strength: number;
-  intelligence: number;
-  stamina: number;
-  healthpoints: number;
-  mana: number;
-  agility: number;
-  speed: number;
+  attributes: {
+    strength: number;
+    intelligence: number;
+    stamina: number;
+    agility: number;
+    speed: number;
+  };
+  lifepower: {
+    healthpoints: number;
+    mana: number;
+  };
   resistance: TElement;
   weakness: TElement;
-  skills: ISkills;
+  skills: ISkills[];
 
   // extend this to match query above
 }
-interface ISkills {
+
+//Decided not to use this because it would make debugging a bit more difficult for me
+export interface ISkills {
   name: string;
   damage: number;
+  description: string;
   element: TElement;
+}
+
+interface TSLifepower {
+  healthpoints: number;
+  mana: number;
+}
+
+interface TSAttributes {
+  strength: number;
+  intelligence: number;
+  stamina: number;
+  agility: number;
+  speed: number;
 }
 const HeroCardContainer = styled.div`
   display: flex;

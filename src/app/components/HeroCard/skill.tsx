@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
 import { Paragraph } from "../../components/Typography";
+import { ISkills } from "../../views/HeroIndex/index";
 
 const Bar = styled.div`
   height: 20px;
@@ -33,30 +34,24 @@ const BarNumber = styled.p`
   font-family: "Montserrat";
   margin: 0;
 `;
-type ProgressBarProps = {
-  attributeName: string;
-  attributeValue: number;
+type SkillProps = {
+  skills: ISkills[];
 };
 
-export const ProgressBar = ({
-  attributeName,
-  attributeValue
-}: ProgressBarProps) => {
+export const Skill = ({ skills }: SkillProps) => {
   return (
     <BarContainer>
-      <BarLabel>{attributeName}</BarLabel>
+      <BarLabel>{skills.description}</BarLabel>
       <Bar>
-        <BarNumber>{attributeValue}</BarNumber>
+        <BarNumber>{}</BarNumber>
         <div
           style={{
             height: "20px",
-            width: attributeValue * 1.5,
             backgroundColor: "red",
             borderRadius: "30px",
             position: "absolute",
             left: "0px",
-            top: "0px",
-            zIndex: "-1"
+            top: "0px"
           }}
         ></div>
       </Bar>
