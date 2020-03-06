@@ -50,6 +50,38 @@ const HeadingHP = styled.div`
   line-height: 25px;
   letter-spacing: 1.15px;
 `;
+const HeadingMana = styled.div`
+  font-family: "Montserrat";
+  font-weight: 700;
+  color: blue;
+  font-size: 22px;
+  line-height: 25px;
+  letter-spacing: 1.15px;
+`;
+
+const Weakness = styled.div`
+  color: red;
+  font-weight: 700;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+`;
+
+const Resistance = styled.div`
+  color: green;
+  font-weight: 700;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const ImgW = styled.img`
+  height: 30px;
+  margin-left: 10px;
+`;
 
 const Top = styled.div`
   display: flex;
@@ -75,8 +107,10 @@ const AttributesContainer = styled.div`
 const SkillsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   flex-wrap: wrap;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 interface IHeroCardProps {
   name: string;
@@ -105,6 +139,8 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
   imgUrl,
   description,
   backStory,
+  weakness,
+  resistance,
   attributes: { stamina, strength, intelligence, speed, agility },
   lifepower: { healthpoints, mana },
   skills
@@ -120,7 +156,27 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
         <Paragraph>{description}</Paragraph>
       </CardFront>
       <CardBack>
-        <Paragraph style={{ margin: 0 }}>
+        <Top>
+          <Weakness>
+            -{" "}
+            <ImgW
+              src={`../../../../public/${weakness}.svg`}
+              alt={`This hero is weak against ${weakness}`}
+              title={`This hero is weak against ${weakness}`}
+            />
+            {}
+          </Weakness>
+          <HeadingMana>{mana} MANA</HeadingMana>
+          <Resistance>
+            +{" "}
+            <ImgW
+              src={`../../../../public/${resistance}.svg`}
+              alt={`This hero is resistant against ${resistance}`}
+              title={`This hero is resistant against ${resistance}`}
+            />
+          </Resistance>
+        </Top>
+        <Paragraph style={{ margin: 0, color: "#001147", fontWeight: 800 }}>
           Attributes
           <div
             style={{
@@ -152,7 +208,7 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
             attributeValue={speed}
           ></ProgressBar>
         </AttributesContainer>
-        <Paragraph style={{ margin: 0 }}>
+        <Paragraph style={{ marginTop: 30, color: "#001147", fontWeight: 800 }}>
           Skills
           <div
             style={{
@@ -162,7 +218,9 @@ export const HeroCard: React.FC<IHeroCardProps> = ({
             }}
           ></div>
         </Paragraph>
-        <SkillsContainer>{/*<Skill skills={skills}></Skill>*/}</SkillsContainer>
+        <SkillsContainer>
+          <Skill skills={skills}></Skill>
+        </SkillsContainer>
       </CardBack>
     </CardFlip>
   );

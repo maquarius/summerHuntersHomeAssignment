@@ -6,7 +6,7 @@ const Bar = styled.div`
   height: 20px;
   width: 150px;
   border-radius: 30px;
-  border: 1px solid black;
+  border: 1px solid #001147;
   display: flex:
   align-items: center;
   justify-content: center;
@@ -51,7 +51,7 @@ export const ProgressBar = ({
           style={{
             height: "20px",
             width: attributeValue * 1.5,
-            backgroundColor: "red",
+            backgroundColor: "hsla(207, 90%, 54%, 0.7)",
             borderRadius: "30px",
             position: "absolute",
             left: "0px",

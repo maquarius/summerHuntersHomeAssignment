@@ -14,10 +14,23 @@ const Bar = styled.div`
   position: relative;
 `;
 
-const BarContainer = styled.div`
+const SkillsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+`;
+
+const SkillDescription = styled.p`
+  color: #191919;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  line-height: 20px;
+  font-family: "Montserrat";
+`;
+
+const SkillItem = styled.div`
+  flex: 1;
 `;
 
 const BarLabel = styled.label`
@@ -34,27 +47,45 @@ const BarNumber = styled.p`
   font-family: "Montserrat";
   margin: 0;
 `;
+const Damage = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Img = styled.img`
+  height: 30px;
+`;
+
+const Number = styled.h2`
+  color: #191919;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  line-height: 20px;
+  font-family: "Montserrat";
+`;
 type SkillProps = {
   skills: ISkills[];
 };
 
 export const Skill = ({ skills }: SkillProps) => {
   return (
-    <BarContainer>
-      <BarLabel>{skills.description}</BarLabel>
-      <Bar>
-        <BarNumber>{}</BarNumber>
-        <div
-          style={{
-            height: "20px",
-            backgroundColor: "red",
-            borderRadius: "30px",
-            position: "absolute",
-            left: "0px",
-            top: "0px"
-          }}
-        ></div>
-      </Bar>
-    </BarContainer>
+    <SkillsContainer>
+      {skills.map(item => (
+        <SkillItem>
+          <Paragraph style={{ margin: 0 }}>{item.name}</Paragraph>
+          <Damage>
+            <Number>{item.damage}</Number>
+            <Img
+              src={`/public/${item.element}.svg`}
+              alt={item.element}
+              title={`${item.name} inflicts ${item.damage} ${item.element} damage`}
+            ></Img>
+          </Damage>
+          <SkillDescription>{item.description}</SkillDescription>
+        </SkillItem>
+      ))}
+    </SkillsContainer>
   );
 };

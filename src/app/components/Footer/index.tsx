@@ -89,7 +89,17 @@ export const Footer: React.FC = () => {
     <StyledFooter>
       <Container>
         <ContactInfo>
-          <p>Made by: Marius van der Busse</p>
+          <Name>Made by: Marius van der Busse</Name>
+          <Name>
+            Credits:
+            <ul>
+              <li>
+                All element icons come from:{" "}
+                <a href="https://game-icons.net/">game-icons.net</a>
+              </li>
+              <li>Hoxhunt provided template, assignment and data</li>
+            </ul>
+          </Name>
         </ContactInfo>
         <LogoContainer>
           <Img src={"/public/summer_hunters_logo.svg"} />

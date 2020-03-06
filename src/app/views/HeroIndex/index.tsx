@@ -35,6 +35,7 @@ const HEROES_QUERY = gql`
         name
         damage
         element
+        description
       }
     }
   }
@@ -92,11 +93,6 @@ const HeroCardContainer = styled.div`
   align-self: center;
   background-image: url(../../../../public/bg_mesh.png);
   justify-content: space-around;
-  max-width: 1150px;
-  @media (min-width: 1400px) {
-    margin-left: auto;
-    margin-right: auto;
-  }
 `;
 
 const handleLoading = () => <div>Loading...</div>;
@@ -133,6 +129,11 @@ export const HeroIndex: React.FC<IHeroIndexProps> = () => {
           It's your job to finish his work before we can continue
           on our journey together!
         `}
+        myParagraph={`Proffesor Hoax can sleep again at night, because we have the HeroCrads!
+          On hovering the backside of the card will show,
+          which then reveals more detailed information about our heroes.
+          Let's hope that those evildoers won't get their hands on this, 
+          because our heroes' strengths and weaknesses are now publicly available...`}
       />
 
       {/** Improve this section. Data provided is defined on top in GraphQL query. You can decide what you use and what you dont't.*/}
