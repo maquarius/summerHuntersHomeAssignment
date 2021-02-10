@@ -1,3 +1,6 @@
+# About
+This assignment was done as the pre-assignment for the Hoxhunt 2020 summer internship. I don't intend to continue working on this project, since i don't think imrpoving this project will benefit me or others. It displayed the skills i had at that time and improving it now would only give a skewed picture of my skills back then. See the information below for the original ReadMe.
+
 # Home assignment
 
 For this assignment we have created a GraphQL API and a simple React application that queries infromation from that API. It is your job to finalize this application. There are some mishaps in the backend, and coding to be done in the frontend. More information of these tracks down below in Tracks section.
